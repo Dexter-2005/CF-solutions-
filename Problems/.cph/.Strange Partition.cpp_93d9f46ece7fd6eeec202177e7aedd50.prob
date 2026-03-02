@@ -1,0 +1,1 @@
+{"name":"Local: Strange Partition","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Strange Partition.cpp","tests":[{"id":1757607332493,"input":"2\n3 3\n3 6 9\n3 3\n6 4 11\n","output":"6 6\n7 8\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Strange Partition.cpp","group":"local","local":true}

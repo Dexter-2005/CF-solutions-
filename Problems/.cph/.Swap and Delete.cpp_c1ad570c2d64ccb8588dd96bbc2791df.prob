@@ -1,0 +1,1 @@
+{"name":"Local: Swap and Delete","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Swap and Delete.cpp","tests":[{"id":1756296283508,"input":"4\n0\n011\n0101110001\n111100\n","output":"1\n1\n0\n4\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Swap and Delete.cpp","group":"local","local":true}

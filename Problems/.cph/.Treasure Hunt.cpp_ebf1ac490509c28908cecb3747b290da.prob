@@ -1,0 +1,1 @@
+{"name":"Local: Treasure Hunt","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Treasure Hunt.cpp","tests":[{"id":1751972674633,"input":"3\n1 2 4\n2 1 4\n2 2 1\n","output":"YES\nNO\nNO\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Treasure Hunt.cpp","group":"local","local":true}

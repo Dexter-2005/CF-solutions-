@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+bool islucky(int num) {
+    while (num > 0) {
+        int digit = num % 10;
+        if (digit != 4 && digit != 7)
+            return false;
+        num /= 10;
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        if (islucky(i) && n % i == 0) {
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+
+    cout << "NO" << endl;
+    return 0;
+}

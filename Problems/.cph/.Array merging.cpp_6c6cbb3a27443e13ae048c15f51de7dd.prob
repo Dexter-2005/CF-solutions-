@@ -1,0 +1,1 @@
+{"name":"Local: Array merging","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Array merging.cpp","tests":[{"id":1760841312868,"input":"1\n6\n2 2 1 2 2 1\n2 2 1 2 2 1","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Array merging.cpp","group":"local","local":true}
