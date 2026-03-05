@@ -15,7 +15,6 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define fori(i, a, b) for (ll i = a; i < b; i++)
 const ll INF = 1e18;
-const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
@@ -28,35 +27,46 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        ll l, r;
-        cin >> l >> r;
-        vector<ll> ans;
-        bool flag = false;
-        for (int i = 1; i <= n; i++)
-        {
-
-            ll temp = ((l + i - 1) / i) * i;
-            ans.push_back(temp);
-
-            if (temp > r)   
+        string s;
+        cin >> s;
+        ll n = s.size();
+        // vector<int> freq(26);
+        // fori(i,0,n)freq[s[i]]++;
+        // if(n==1 || n==2){
+        //     cout << "YES\n";
+        // }
+        // else if(n==3){
+        //     if(s[0]!=s[1] && s[1]!=s[2] && s[0]!=s[2])cout << "YES\n";
+        //     else if(s[0]==s[1] && s[1]==s[2])cout << "YES\n";
+        //     else if(s[0]!=s[1] && s[0]==s[2])cout << "YES\n";
+        //     else if(s[0]!=s[1] && s[1]==s[2])cout << "NO\n";
+        //     else if(s[0]==s[1] && s[1]!=s[2])cout << "NO\n";
+        //     else {
+        //         fori
+        set<char> c;        
+        int k;
+        for (k = 0; k < n; k++)
+        { 
+            if (c.find(s[k]) == c.end())
             {
-                flag = true;
+                c.insert(s[k]);
+            }
+            else
+            {
                 break;
             }
         }
-        if (flag)
-        {
-            cout << "NO" << endl;
-            continue;
+     
+        for (int i = k; i < n; i++)
+        { 
+            if (s[i] != s[i - k])
+            {
+                cout << "NO" << endl; 
+               goto next;
+            }
         }
-
         cout << "YES" << endl;
-        for (auto it : ans)
-        {
-            cout << it << " ";
-        }
-        cout << endl;
+        next:;
     }
+
 }

@@ -15,6 +15,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define fori(i,a,b) for(ll i=a;i<b;i++)
 const ll INF = 1e18;
+const ll MOD = 1e9+7;
 
 ll gcd(ll a,ll b){ return b?gcd(b,a%b):a; }
 

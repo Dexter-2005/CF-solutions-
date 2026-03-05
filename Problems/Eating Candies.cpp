@@ -15,7 +15,6 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define fori(i, a, b) for (ll i = a; i < b; i++)
 const ll INF = 1e18;
-const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
@@ -30,33 +29,44 @@ int main()
     {
         ll n;
         cin >> n;
-        ll l, r;
-        cin >> l >> r;
-        vector<ll> ans;
-        bool flag = false;
-        for (int i = 1; i <= n; i++)
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        vector<ll> pref(n);
+        // pref[0] = a[0];
+        // fori(i,1,n) pref[i] = pref[i-1] + a[i];
+        // vector<ll> suff(n);
+        // suff[n-1] = a[n-1];
+        // for(ll i=n-2; i>=0; i--) suff[i] = suff[i+1] + a[i];
+        // ll ans = 0;
+        // for(ll i=n-1; i>=0; i--) {
+        //    for(ll j=0;j<i; j++) {
+        //        if(pref[j] == suff[i]) ans = j+1+n-i;
+        //    }
+        // }
+        // if(ans == 0) cout << 0 << "\n";
+        // else
+
+        ll i = 0, j = n - 1;
+        ll left = 0, right = 0;
+        ll ans = 0;
+        while (i <= j)
         {
-
-            ll temp = ((l + i - 1) / i) * i;
-            ans.push_back(temp);
-
-            if (temp > r)   
+            if (left <= right)
             {
-                flag = true;
-                break;
+                left += a[i];
+                i++;
+            }
+            else
+            {
+                right += a[j];
+                j--;
+            }
+            if (left == right)
+            {
+                ans = i + (n - 1 - j);
             }
         }
-        if (flag)
-        {
-            cout << "NO" << endl;
-            continue;
-        }
 
-        cout << "YES" << endl;
-        for (auto it : ans)
-        {
-            cout << it << " ";
-        }
-        cout << endl;
+        cout << ans << "\n";
     }
 }

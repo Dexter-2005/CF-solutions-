@@ -28,35 +28,35 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        ll l, r;
-        cin >> l >> r;
-        vector<ll> ans;
-        bool flag = false;
-        for (int i = 1; i <= n; i++)
+        ll n, k;
+        cin >> n >> k;
+        vector<ll> v(n);
+
+        for (int i = 0; i < n; i++)
         {
+            cin >> v[i];
+        }
 
-            ll temp = ((l + i - 1) / i) * i;
-            ans.push_back(temp);
+        map<ll, bool> mp;
 
-            if (temp > r)   
+        for (auto it : v)
+        {
+            mp[it] = true;
+        }
+        bool flag = false;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (mp.find(v[i] - k) != mp.end())
             {
-                flag = true;
-                break;
+              flag = true;
+              break;
             }
         }
         if (flag)
-        {
-            cout << "NO" << endl;
-            continue;
-        }
+            cout << "YES" << endl;
+        else
 
-        cout << "YES" << endl;
-        for (auto it : ans)
-        {
-            cout << it << " ";
-        }
-        cout << endl;
+        cout << "NO" << endl;
     }
 }

@@ -30,33 +30,34 @@ int main()
     {
         ll n;
         cin >> n;
-        ll l, r;
-        cin >> l >> r;
-        vector<ll> ans;
-        bool flag = false;
-        for (int i = 1; i <= n; i++)
+        vector<ll> v(n);
+        fori(i, 0, n) cin >> v[i];
+        ll ans = 0;
+        ll i = n - 1;
+
+        while (i >= 0 && v[i] == v[n - 1])
         {
-
-            ll temp = ((l + i - 1) / i) * i;
-            ans.push_back(temp);
-
-            if (temp > r)   
-            {
-                flag = true;
-                break;
-            }
+            i--;
         }
-        if (flag)
+
+        if (i == -1)
         {
-            cout << "NO" << endl;
+            cout << 0 << endl;
             continue;
         }
 
-        cout << "YES" << endl;
-        for (auto it : ans)
+        while (i >= 0)
         {
-            cout << it << " ";
+            i -= (n - 1 - i);
+            ans++;
+
+            while (i >= 0 && v[i] == v[n - 1])
+            {
+                i--;
+            }
         }
-        cout << endl;
+
+        cout << ans << endl;
     }
+    return 0;
 }

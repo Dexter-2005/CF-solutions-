@@ -25,38 +25,37 @@ int main()
     cin.tie(0);
 
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        ll l, r;
-        cin >> l >> r;
-        vector<ll> ans;
-        bool flag = false;
+        int n, q;
+        cin >> n >> q;
+
+        vector<int> a(n + 1);
+        vector<int> pos(51, 0);
+
         for (int i = 1; i <= n; i++)
         {
+            cin >> a[i];
+            if (pos[a[i]] == 0)
+                pos[a[i]] = i;
+        }
 
-            ll temp = ((l + i - 1) / i) * i;
-            ans.push_back(temp);
+        while (q--)
+        {
+            int t;
+            cin >> t;
 
-            if (temp > r)   
+            int p = pos[t];
+            cout << p << " ";
+
+            for (int c = 1; c <= 50; c++)
             {
-                flag = true;
-                break;
+                if (pos[c] < p)
+                    pos[c]++;
             }
-        }
-        if (flag)
-        {
-            cout << "NO" << endl;
-            continue;
-        }
 
-        cout << "YES" << endl;
-        for (auto it : ans)
-        {
-            cout << it << " ";
+            pos[t] = 1;
         }
-        cout << endl;
     }
 }
