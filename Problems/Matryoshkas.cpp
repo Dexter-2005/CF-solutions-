@@ -28,6 +28,36 @@ int main()
     cin >> t;
     while (t--)
     {
-      
+        ll n;
+        cin >> n;
+        vector<int> a(n);
+        map<int, int> freq;
+
+        fori(i, 0, n)
+        {
+            cin >> a[i];
+            freq[a[i]]++;
+        }
+
+        sort(all(a));
+
+        int counter = 0;
+
+        while (!freq.empty())
+        {
+            int cur = freq.rbegin()->first;
+
+            while (freq.count(cur))
+            {
+                freq[cur]--;
+                if (freq[cur] == 0)
+                    freq.erase(cur);
+                cur--;
+            }
+
+            counter++;
+        }
+
+        cout << counter << "\n";
     }
 }
