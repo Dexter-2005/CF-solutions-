@@ -19,23 +19,6 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-int switches(vector<ll> &a) {
-    vector<ll> b;
-    b.pb(a[0]);
-    for (int i = 1; i < a.size(); i++) {
-        if (a[i] != a[i - 1]) b.pb(a[i]);
-    }
-
-    int n = b.size();
-    if (n == 1) return 1;
-
-    int ans = 2;
-    for (int i = 1; i < n - 1; i++) {
-        if ((b[i] > b[i - 1] && b[i] > b[i + 1]) || (b[i] < b[i - 1] && b[i] < b[i + 1])) ans++;
-    }
-    return ans;
-}
-
 int main()
 {
     ios::sync_with_stdio(0);
@@ -49,15 +32,43 @@ int main()
         cin >> n;
         vector<ll> a(n);
         fori(i, 0, n) cin >> a[i];
+        ll mini = 1;
+        ll maxi = n;
+        ll l = 0, r = n - 1;
+        while (l < r)
+        {
+            bool changed = false;
 
-        ll contrast = 0;
-        for (ll i = 0; i < n - 1; i++) contrast += abs(a[i] - a[i + 1]);
+            if (a[l] == mini)
+            {
+                l++;
+                mini++;
+                changed = true;
+            }
+            else if (a[r] == maxi)
+            {
+                r--;
+                maxi--;
+                changed = true;
+            }
+            else if (a[l] == maxi)
+            {
+                l++;
+                maxi--;
+                changed = true;
+            }
+            else if (a[r] == mini)
+            {
+                r--;
+                mini++;
+                changed = true;
+            }
 
-        if (contrast == 0) {
-            cout << 1 << endl;
-            continue;
+            if (!changed)
+                break;
         }
-
-        cout << switches(a) << endl;
+        if(l==r) cout << -1 << endl;
+        else cout << l + 1 << " " << r + 1 << endl;
+       
     }
 }
