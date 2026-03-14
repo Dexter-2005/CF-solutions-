@@ -29,28 +29,34 @@ int main()
     while (t--)
     {
         ll n;
-        cin >> n;
-        vector<string> a(n);
-        for (int i = 0; i < n; i++)
+        char k;
+        cin >> n >> k;
+        string s;
+        cin >> s;
+        bool temp = true;
+        fori(i, 0, n)
         {
-            cin >> a[i];
-        }
-
-        ll total = 0;
-        for (int i = 0; i < n / 2; i++)
-        {
-            for (int j = 0; j < (n + 1) / 2; j++)
+            if (s[i] != k)
             {
-                int x = a[i][j] - '0';
-                int y = a[j][n - 1 - i] - '0';
-                int z = a[n - 1 - i][n - 1 - j] - '0';
-                int w = a[n - 1 - j][i] - '0';
-
-                int s = x + y + z + w;
-                total += min(s, 4 - s);
+                temp = false;
+                break;
             }
         }
+        if (temp)
+            cout << "0\n";
+        else
+        {
+            if (s[n - 1] == k)
+            {
+                cout << "1\n";
+                cout << n << "\n";
+            }
 
-        cout << total << "\n";
+            else
+            {
+                cout << "2\n";
+                cout << n - 1 << " " << n << "\n";
+            }
+        }
     }
 }

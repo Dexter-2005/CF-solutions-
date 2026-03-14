@@ -24,33 +24,54 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    ll t = 1;
-    cin >> t;
-    while (t--)
+    int n, q;
+    cin >> n >> q;
+
+    vector<pair<int, int>> v(n, {0, 0});
+
+    for (int i = 0; i < n; i++)
     {
-        ll n;
-        cin >> n;
-        vector<string> a(n);
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-        }
+        cin >> v[i].first;
+    }
 
-        ll total = 0;
-        for (int i = 0; i < n / 2; i++)
+    pair<int, int> global = {0, -1};
+
+    long long sum = 0;
+    for (int i = 0; i < n; i++) 
+        sum += v[i].first;
+    for (int it = 1; it <= q; it++)
+    {
+        int x;
+        cin >> x;
+
+        if (x == 1)
         {
-            for (int j = 0; j < (n + 1) / 2; j++)
+            int ind, val;
+            cin >> ind >> val;
+            ind--;
+
+            if (v[ind].second > global.second)
             {
-                int x = a[i][j] - '0';
-                int y = a[j][n - 1 - i] - '0';
-                int z = a[n - 1 - i][n - 1 - j] - '0';
-                int w = a[n - 1 - j][i] - '0';
-
-                int s = x + y + z + w;
-                total += min(s, 4 - s);
+                sum += (val - v[ind].first);
             }
+            else
+            {
+                sum += (val - global.first);
+            }
+
+            v[ind].first = val;
+            v[ind].second = it;
+        }
+        else
+        {
+            int val;
+            cin >> val;
+            global.first = val;
+            global.second = it;
+
+            sum = (long long)(val)*n;
         }
 
-        cout << total << "\n";
+        cout << sum << "\n";
     }
 }

@@ -28,29 +28,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vector<string> a(n);
-        for (int i = 0; i < n; i++)
+        ll n, x;
+        cin >> n >> x;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        sort(all(a));
+        ll ans = 0;
+        ll prev = 0;
+        vector<ll> pre(n);
+        pre[0] = a[0];
+        fori(i, 1, n) pre[i] = pre[i - 1] + a[i];
+        for (ll i = n - 1; i >= 0; i--)
         {
-            cin >> a[i];
-        }
-
-        ll total = 0;
-        for (int i = 0; i < n / 2; i++)
-        {
-            for (int j = 0; j < (n + 1) / 2; j++)
+            if (x >= pre[i])
             {
-                int x = a[i][j] - '0';
-                int y = a[j][n - 1 - i] - '0';
-                int z = a[n - 1 - i][n - 1 - j] - '0';
-                int w = a[n - 1 - j][i] - '0';
-
-                int s = x + y + z + w;
-                total += min(s, 4 - s);
+                ll k = (x - pre[i]) / (i + 1) + 1;
+                ans += (k - prev) * (i+1);
+                prev = k;
             }
         }
-
-        cout << total << "\n";
+        cout << ans << "\n";
     }
 }
