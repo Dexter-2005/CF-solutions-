@@ -19,50 +19,6 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-map<int, pair<int, int>> tme;
-int t = 0;
-// label-> {in time , out time}
-
-void dfs(ll node, ll parent, vector<ll> adj[], vector<ll> &level,ll l=0)
-{
-    // entering the node
-    tme[node].first = t;
-    t++;
-
-    cout << node << " ";
-    level[node]=l;
-    for (auto child : adj[node])
-    {
-        if (child == parent)
-            continue;
-        dfs(child, node, adj,level,l+1);
-    }
-    tme[node].second = t;
-    t++;
-    // leaving the node
-}
-
-void bfs(ll root, vector<ll> adj[])
-{
-    queue<pair<int, int>> q;
-    //       node,parent
-
-    q.push({1, 0});
-    while (q.empty() == false)
-    {
-        ll node = q.front().first;
-        cout << node << " ";
-        ll parent = q.front().second;
-        q.pop();
-        for (auto child : adj[node])
-        {
-            if (child == parent)
-                continue;
-            q.push({child, node});
-        }
-    }
-}
-
 int main()
 {
     ios::sync_with_stdio(0);
@@ -71,27 +27,24 @@ int main()
     ll t = 1;
     cin >> t;
     while (t--)
-    {
+    {    
         ll n;
         cin >> n;
-
-        // taking input of tree
-        vector<ll> adj[n + 1];
-        fori(i, 0, n - 1)
-        {
-            ll u, v;
-            cin >> u >> v;
-            adj[u].pb(v);
-            adj[v].pb(u);
+        vector <ll> a(n);
+        fori(i,0,n) cin >> a[i];
+        ll maxi=a[0];
+        ll ans=1;
+        fori(i,1,n) {
+            if(a[i]>=maxi){
+                maxi=a[i];
+                ans++;
+            }
         }
-        vector<ll> level(n+1,0);
+        cout << ans<<"\n";
 
-        dfs(1, 0, adj,level);
 
-        ll ans=0;
-        fori(i,1,n+1) ans=max(ans,level[i]+1);
-        cout << ans;
 
-        bfs(1, adj);
+
+
     }
 }
