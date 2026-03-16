@@ -24,57 +24,55 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    ll t = 1;
+    ll t;
     cin >> t;
+
     while (t--)
     {
-        ll n;
-        char k;
+        ll n, k;
         cin >> n >> k;
-        string s;
-        cin >> s;
-        bool temp = true;
-        bool temp1 = false;
-        ll ans = 0;
-        fori(i, 0, n)
-        {
-            if (s[i] != k)
-            {
-                temp = false;
-                break;
-            }
-        }
-        if (temp)
-            cout << "0\n";
-        else
-        {
-            bool found = false;
 
-            for (int x = 1; x <= n; x++)
+        vector<ll> v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+
+        vector<ll> colours[k + 1];
+
+        for (ll i = 1; i <= k; i++)
+            colours[i].push_back(0);
+
+        for (ll i = 0; i < n; i++)
+            colours[v[i]].push_back(i + 1);
+
+        for (ll i = 1; i <= k; i++)
+            colours[i].push_back(n + 1);
+
+        priority_queue<ll> jumps[k + 1];
+
+        ll ans = INF;
+
+        for (ll i = 1; i <= k; i++)
+        {
+            for (ll j = 0; j < colours[i].size() - 1; j++)
+                jumps[i].push(colours[i][j + 1] - colours[i][j] - 1);
+
+            ll max_val = jumps[i].top();
+            jumps[i].pop();
+
+            if (max_val % 2 == 0)
             {
-                bool ok = true;
-                for (int j = x; j <= n; j += x)
-                {
-                    if (s[j - 1] != k)
-                    {
-                        ok = false;
-                        break;
-                    }
-                }
-                if (ok)
-                {
-                    cout << "1\n"
-                         << x << "\n";
-                    found = true;
-                    break;
-                }
+                jumps[i].push(max_val / 2);
+                jumps[i].push((max_val / 2) - 1);
+            }
+            else
+            {
+                jumps[i].push(max_val / 2);
+                jumps[i].push(max_val / 2);
             }
 
-            if (!found)
-            {
-                cout << "2\n"
-                     << n - 1 << " " << n << "\n";
-            }
+            ans = min(ans, jumps[i].top());
         }
+
+        cout << ans << "\n";
     }
 }

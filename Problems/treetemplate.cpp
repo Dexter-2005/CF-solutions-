@@ -19,6 +19,29 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
+map<int, pair<int, int>> tme;
+int t = 0;
+    // label-> {in time , out time}
+
+
+void dfs(ll node, ll parent, vector<ll> adj[])
+{
+    // entering the node
+    tme[node].first = t;
+    t++;
+
+    cout << node << " ";
+    for (auto child : adj[node])
+    {
+        if (child == parent)
+            continue;
+        dfs(child, node, adj);
+    }
+    tme[node].second = t;
+    t++;
+    // leaving the node
+}
+
 int main()
 {
     ios::sync_with_stdio(0);
@@ -29,52 +52,21 @@ int main()
     while (t--)
     {
         ll n;
-        char k;
-        cin >> n >> k;
-        string s;
-        cin >> s;
-        bool temp = true;
-        bool temp1 = false;
-        ll ans = 0;
-        fori(i, 0, n)
-        {
-            if (s[i] != k)
-            {
-                temp = false;
-                break;
-            }
-        }
-        if (temp)
-            cout << "0\n";
-        else
-        {
-            bool found = false;
+        cin >> n;
 
-            for (int x = 1; x <= n; x++)
-            {
-                bool ok = true;
-                for (int j = x; j <= n; j += x)
-                {
-                    if (s[j - 1] != k)
-                    {
-                        ok = false;
-                        break;
-                    }
-                }
-                if (ok)
-                {
-                    cout << "1\n"
-                         << x << "\n";
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                cout << "2\n"
-                     << n - 1 << " " << n << "\n";
-            }
+        // taking input of tree
+        vector<ll> adj[n + 1];
+        fori(i, 0, n - 1)
+        {
+            ll u, v;
+            cin >> u >> v;
+            adj[u].pb(v);
+            adj[v].pb(u);
         }
+
+        // DFS to find the depth of each node
+        dfs(1, 0, adj);
+        
+       
     }
 }
