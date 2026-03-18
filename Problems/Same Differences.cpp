@@ -24,6 +24,9 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
     ll t = 1;
     cin >> t;
     while (t--)
@@ -31,28 +34,28 @@ int main()
         ll n;
         cin >> n;
         vector<pair<ll, ll>> a(n);
+
         fori(i, 0, n)
         {
             cin >> a[i].first;
-            a[i].second = i + 1;
+            a[i].second = i + 1; // original index
         }
+
         ll ans = 0;
-        sort(all(a));
+
         for (int i = 0; i < n; i++)
         {
             for (int j = i + 1; j < n; j++)
             {
-
-                if (a[i].first * a[j].first >= 2 * n)
+                if (a[j].first - a[i].first > (a[j].second - a[i].second))
                     break;
 
-                if (a[i].first * a[j].first == a[i].second + a[j].second)
+                if (a[j].first - a[i].first == (a[j].second - a[i].second))
                     ans++;
             }
         }
 
         cout << ans << "\n";
-    }
-
-    return 0;
+    
+}
 }
