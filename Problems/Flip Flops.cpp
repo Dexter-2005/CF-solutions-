@@ -7,6 +7,7 @@
  ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
         CF ID : DeXTer-69
 *****************************************************/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -28,58 +29,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, k;
-        cin >> n >> k;
-        ll posb = 1;
-        ll posa = n;
-        if (k == 1)
+        ll n, c, k;
+        cin >> n >> c >> k;
+
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+
+        sort(all(a));
+
+        fori(i, 0, n)
         {
-            cout << "1\n";
-            continue;
+            if (a[i] > c) break;
+            ll diff = c - a[i];
+            ll sum = min(k, diff);
+            k -= sum;
+
+            c += sum;
+            c += a[i];
         }
 
-        // k--;
-        //  while (k--)
-        //  {
-        //      if (posa == 1)
-        //      {
-        //          posa = n;
-        //      }
-        //      else
-        //      {
-        //          posa--;
-        //      }
-        //      if (posb == n)
-        //      {
-        //          posb = 1;
-        //      }
-        //      else
-        //      {
-        //          posb++;
-        //      }
-        //      if (posa == posb)
-        //      {
-        //          if (posa == n)
-        //              posb = 1;
-        //          else
-        //              posb++;
-        //      }
-        //      }
-
-        if (n % 2 == 0)
-        {
-            ll ans = k % n;
-            if (ans == 0)
-                ans = n;
-            cout << ans << "\n";
-        }
-        else
-        {
-            ll ans = (k + (k - 1) / (n / 2)) % n;
-            if (ans == 0)
-                ans = n;
-            cout << ans << "\n";
-        }
-    
-}
+        cout << c << "\n";
+    }
 }

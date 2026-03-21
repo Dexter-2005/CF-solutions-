@@ -28,58 +28,35 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, k;
-        cin >> n >> k;
-        ll posb = 1;
-        ll posa = n;
-        if (k == 1)
-        {
-            cout << "1\n";
-            continue;
-        }
+        ll n;
+        cin >> n;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
 
-        // k--;
-        //  while (k--)
-        //  {
-        //      if (posa == 1)
-        //      {
-        //          posa = n;
-        //      }
-        //      else
-        //      {
-        //          posa--;
-        //      }
-        //      if (posb == n)
-        //      {
-        //          posb = 1;
-        //      }
-        //      else
-        //      {
-        //          posb++;
-        //      }
-        //      if (posa == posb)
-        //      {
-        //          if (posa == n)
-        //              posb = 1;
-        //          else
-        //              posb++;
-        //      }
-        //      }
-
-        if (n % 2 == 0)
+        fori(i, 0, n)
         {
-            ll ans = k % n;
-            if (ans == 0)
-                ans = n;
-            cout << ans << "\n";
+            ll sec1 = 0;
+            ll sec2 = 0;
+            fori(j, i + 1, n)
+            {
+                if (a[j] > a[i])
+                {
+                    sec1++;
+                }
+                if (a[j] < a[i])
+                {
+                    sec2++;
+                }
+            }
+            if (sec1 > sec2)
+            {
+                cout << sec1 << " ";
+            }
+            else
+            {
+                cout << sec2 << " ";
+            }
         }
-        else
-        {
-            ll ans = (k + (k - 1) / (n / 2)) % n;
-            if (ans == 0)
-                ans = n;
-            cout << ans << "\n";
-        }
-    
-}
+        cout << "\n";
+    }
 }
