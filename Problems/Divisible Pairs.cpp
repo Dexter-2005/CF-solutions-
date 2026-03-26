@@ -27,7 +27,25 @@ int main()
     ll t = 1;
     cin >> t;
     while (t--)
-    {      
-        
+    {
+
+        ll n, x, y;
+        cin >> n >> x >> y;
+        vector<ll> vec(n), num(n);
+        for (int i = 0; i < n; i++)
+        {
+            ll a;
+            cin >> a;
+            vec[i] = a % x;
+            num[i] = a % y;
+        }
+        map<pair<ll, ll>, ll> freq;
+        ll ans = 0;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            ans += freq[{(x - vec[i]) % x, num[i]}];
+            freq[{vec[i], num[i]}]++;
+        }
+        cout << ans << '\n';
     }
 }
