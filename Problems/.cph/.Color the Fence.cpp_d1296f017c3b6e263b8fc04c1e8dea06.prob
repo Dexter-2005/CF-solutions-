@@ -1,0 +1,1 @@
+{"name":"Local: Color the Fence","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Color the Fence.cpp","tests":[{"id":1774963776432,"input":"5\n5 4 3 2 1 2 3 4 5\n","output":"55555\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Color the Fence.cpp","group":"local","local":true}
