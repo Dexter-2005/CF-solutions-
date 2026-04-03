@@ -30,9 +30,16 @@ int main()
     {
         ll n;
         cin >> n;
-        if (n % 3 == 0)
-            cout << "Second" << endl;
+
+        vector<ll> a(n);
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+
+        if (a[0] == 1)
+            cout << "YES\n";
         else
-            cout << "First" << endl;
+            cout << "NO\n";
     }
 }

@@ -25,14 +25,24 @@ int main()
     cin.tie(0);
 
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        if (n % 3 == 0)
-            cout << "Second" << endl;
-        else
-            cout << "First" << endl;
+        int n;
+        if (cin >> n)
+        {
+            vector<string> answers = {
+                "",
+                "drive",
+                "no",
+                "no",
+                "no",
+                "no",
+                "no",
+                "sdrawkcab",
+                "7"};
+
+            cout << answers[n] << "\n";
+        }
     }
 }

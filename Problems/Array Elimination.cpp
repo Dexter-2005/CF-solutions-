@@ -28,11 +28,33 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        if (n % 3 == 0)
-            cout << "Second" << endl;
-        else
-            cout << "First" << endl;
+       ll n;
+       cin >> n;
+       vector<ll> a(n);
+       fori(i, 0, n) cin >> a[i];
+       vector<ll>bits(30, 0);
+         fori(i, 0, n)
+         {
+              fori(j, 0, 30)
+              {
+                if (a[i] & (1 << j))
+                     bits[j]++;
+              }
+         }
+         fori(i,1,n+1){
+            bool flag=true;
+            fori(j,0,30){
+                if(bits[j]%i!=0){
+                    flag=false;
+                }
+            }
+            if(flag){
+                cout << i << " ";
+            }
+         }
+            cout << endl;
+         
+
+
     }
 }
