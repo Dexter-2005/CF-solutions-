@@ -19,46 +19,15 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-// took from gfg
-vector<ll> sieve(ll n) {
-
-    vector<bool> prime(n + 1, true);
-    for (ll p = 2; p * p <= n; p++) {
-        if (prime[p] == true) {
- 
-            for (ll i = p * p; i <= n; i += p)
-                prime[i] = false;
-        }
-    }
-    
-    vector<ll> res;
-    res.pb(1);
-    for (ll p = 2; p <= n; p++){
-        if (prime[p]){ 
-            res.push_back(p);
-        }
-    }
-    return res;
-}
-
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    vector<ll> primes = sieve(200000);
+
     ll t = 1;
     cin >> t;
     while (t--)
     {
-          ll n;
-        cin >> n;
-         cout << 1<< " ";
-        fori(i,0,n-1){
-            cout << primes[i]*primes[i+1]<< " ";
-        }
-        cout << endl;
-        
-
         
         
        
