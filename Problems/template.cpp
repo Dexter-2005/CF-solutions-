@@ -28,11 +28,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        if (n % 3 == 0)
-            cout << "Second" << endl;
-        else
-            cout << "First" << endl;
+        
+        
+       
+        
     }
+    return 0;
 }

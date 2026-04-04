@@ -28,11 +28,31 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        if (n % 3 == 0)
-            cout << "Second" << endl;
-        else
-            cout << "First" << endl;
+        ll n,w;
+        cin >> n >> w;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        map<ll,ll>mp;
+        fori(i,0,n){
+            mp[a[i]]++;
+        }
+        vector<pair<ll,ll>>v;
+        for(auto it:mp){
+            v.pb({it.second,it.first});
+        }
+        sort(v.rbegin(),v.rend());
+        ll currw=0;
+        for(auto it:mp){
+            currw+=it.first;
+        }
+        ll rem=w-currw;
+        if(rem>=v[0].second){
+            
+        }
+
+       
+
+
+        
     }
 }
