@@ -24,37 +24,19 @@ int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-   
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
     {
-        ll n,w;
-        cin>>n>>w;
-        vector<ll> a(n);
-        fori(i,0,n) cin>>a[i];
-        vector<ll> bits(21,0);
-        fori(i,0,n){
-            fori(j,0,21){
-                if(a[i]&(1<<j)) bits[j]++;
-            }
+        ll n;
+        cin>>n;
+        if(n%2==0){
+            cout <<(n/2+1)*(n/2+1)<<"\n";
         }
-        ll ans=0;
-        ll used=0;
-        while(used<n){
-            ll curr=w;
-            for(ll i=20;i>=0;i--){
-                if(bits[i]>0 && (curr>=(1<<i))){
-                    ll can=curr/(1<<i);
-                    can=min(can,bits[i]);
-                    curr-=can*(1<<i);
-                    bits[i]-=can;
-                    used+=can;
-                }
-            }
-            ans++;
+        else {
+            cout <<2*(n/2 + 1)*(n/2 + 2) <<"\n";
         }
-        cout << ans << "\n";
+        
      
     }
     return 0;
