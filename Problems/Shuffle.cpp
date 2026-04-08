@@ -27,6 +27,38 @@ int main()
     cin >> t;
     while (t--)
     {
+        ll n,x,m;
+        cin >> n >> x >> m;
+        bool baby=false;
+        // ll lmin,rmax;
+        // cin >> lmin >> rmax;
+        // if( lmin <=x || rmax >= x) {
+        //     baby=true;
+        //     lmin=min(lmin,x);
+        //     rmax=max(rmax,x);
+        // }
+        // m--;
+        // while(m--){
+        //     ll l,r;
+        //     cin >> l >> r;
+        //     if
+
+        // }
+        ll lmin=x,rmax=x;
+        while (m--)
+        {
+            ll l,r;
+            cin >> l >> r;
+            if( l <=rmax && r >= lmin) {
+                baby=true;
+                lmin=min(lmin,l);
+                rmax=max(rmax,r);
+            }
+
+
+        }
+        if(baby) cout << rmax-lmin+1 << "\n";
+        else cout << "1\n";
     }
     return 0;
 }

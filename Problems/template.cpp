@@ -25,8 +25,9 @@ int main()
     cin.tie(0);
     ll t = 1;
     cin >> t;
-    while (t--){
-   
-}
+    while (t--)
+    {
+        
+    }
     return 0;
 }
