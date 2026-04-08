@@ -27,6 +27,23 @@ int main()
     cin >> t;
     while (t--)
     {
+        ll n, k;
+        cin >> n >> k;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        ll sum = 0;
+
+        fori(i, 0, n) sum += a[i];
+        ll sum2 =  n * k;
+
+        if ((sum % 2 != 0) || (sum2 % 2 == 0))
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
+        }
     }
     return 0;
 }
