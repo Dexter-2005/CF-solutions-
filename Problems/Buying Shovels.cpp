@@ -19,31 +19,6 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-
-// funcn taken as reference from geeksforgeeks for prime factorization of a number
-vector<int> primefactors(int n) {
-    vector<int> factors;
-
-    while (n % 2 == 0) {
-        factors.push_back(2);
-        n /= 2;
-    }
-
-    for (int i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            factors.push_back(i);
-            n /= i;
-        }
-    }
-
-    if (n > 2) {
-        factors.push_back(n);
-    }
-
-    return factors;
-}
-
-
 int main()
 {
     ios::sync_with_stdio(0);
@@ -52,20 +27,33 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin>>n;
-        vector<int> factors=primefactors(n);
-        if(factors.size()<3)
+        ll n,k;
+        cin>>n>>k;
+        if(k==1)
         {
-            cout<<"NO\n";
+            cout<<n<<"\n";
+            continue;
         }
-        else if
+        if(n<=k)
         {
-            cout<<factors[0]<<" "<<factors[1]<<" "<<n/(factors[0]*factors[1])<<"\n";
+            cout<<1<<"\n";
+            continue;
         }
-       
-      
-
+        ll lastfact=1;
+        for(ll i=k; i>=1; i--)
+        {
+            if(n%i==0)
+            {
+                lastfact=i;
+                break;
+            }
+        }
+        ll ans=n/lastfact;
+        cout<<ans<<"\n";
+        
+        
+        
+        
     }
     return 0;
 }

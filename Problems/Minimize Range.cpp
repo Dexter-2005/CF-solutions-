@@ -19,53 +19,27 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-
-// funcn taken as reference from geeksforgeeks for prime factorization of a number
-vector<int> primefactors(int n) {
-    vector<int> factors;
-
-    while (n % 2 == 0) {
-        factors.push_back(2);
-        n /= 2;
-    }
-
-    for (int i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            factors.push_back(i);
-            n /= i;
-        }
-    }
-
-    if (n > 2) {
-        factors.push_back(n);
-    }
-
-    return factors;
-}
-
-
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     ll t = 1;
-    cin >> t;
+  //  cin >> t;
     while (t--)
     {
-        ll n;
-        cin>>n;
-        vector<int> factors=primefactors(n);
-        if(factors.size()<3)
+        // 4 4 5 4 0
+        ll n, k;
+        cin>>n>>k;
+        vector<ll> a(n);
+        fori(i, 0, n)
         {
-            cout<<"NO\n";
+            cin>>a[i];
+            a[i]=a[i]%k;
         }
-        else if
-        {
-            cout<<factors[0]<<" "<<factors[1]<<" "<<n/(factors[0]*factors[1])<<"\n";
-        }
-       
-      
-
+        sort(all(a));
+        ll diff=a[n-1]-a[n-2];
+        ll diif2=k%diff;
+        cout << max(diff, diif2) << "\n";
     }
     return 0;
 }

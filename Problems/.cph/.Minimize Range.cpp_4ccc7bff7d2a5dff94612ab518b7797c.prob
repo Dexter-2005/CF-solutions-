@@ -1,0 +1,1 @@
+{"name":"Local: Minimize Range","url":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Minimize Range.cpp","tests":[{"id":1775708889711,"input":"5 6\n4 100 5 10 450","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\user\\OneDrive\\Desktop\\Code Forces\\Problems\\Minimize Range.cpp","group":"local","local":true}
