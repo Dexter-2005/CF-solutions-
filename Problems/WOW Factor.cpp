@@ -24,26 +24,19 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
     ll t = 1;
-    cin >> t;
+   // cin >> t;
     while (t--)
     {
-        ll n, k;
-        cin >> n >> k;
-        ll ans=n;
-        for (ll i = 1; i * i <= n; i++)
-        {
-            if (i > k)
-                break;
-            if (n % i == 0)
-            {
-                ans = min(ans, n / i);
-            
-
-            if (n / i <= k)
-                ans = min(ans, i);
-            }
+        string s;
+        cin >> s;
+        ll n = s.size();
+        string srv;
+        fori(i,0,n-1){
+            if(s[i]=='o') srv+='o';
+            else if(s[i]=='v' && s[i+1]=='v') srv+='w';
         }
-        cout << ans << "\n";
+        //cout << srv << "\n";
+        
     }
-    return 0;
+return 0;
 }

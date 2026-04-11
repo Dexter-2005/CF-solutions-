@@ -24,26 +24,40 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
-    {
-        ll n, k;
-        cin >> n >> k;
-        ll ans=n;
-        for (ll i = 1; i * i <= n; i++)
-        {
-            if (i > k)
-                break;
-            if (n % i == 0)
-            {
-                ans = min(ans, n / i);
-            
+    {   
+        ll n;
+        cin >> n;
+        vector<ll> a(n), b(n);
 
-            if (n / i <= k)
-                ans = min(ans, i);
-            }
+        vector<ll> pos(n + 1);
+
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            pos[a[i]] = i;
         }
-        cout << ans << "\n";
+
+        vector<ll> c(n);
+
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> b[i];
+            c[pos[b[i]]] = i;
+        }
+
+        ll mx = c[0];
+        ll ukc = 0;
+
+        for (ll i = 1; i < n; i++)
+        {
+            if (c[i] < mx)
+                ukc++;
+            mx = max(mx, c[i]);
+        }
+
+        cout << ukc << "\n";
     }
     return 0;
 }

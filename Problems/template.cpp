@@ -27,7 +27,13 @@ int main()
     cin >> t;
     while (t--)
     {
-        
-}
-return 0;
+        ll n, k;
+        cin >> n >> k;
+
+        if (n % 2 == 0 || (n - k) % 2 == 0)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
+    return 0;
 }
