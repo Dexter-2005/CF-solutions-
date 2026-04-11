@@ -27,6 +27,11 @@ int main()
     cin >> t;
     while (t--)
     {
+      ll n,h;
+        cin>>n>>h;
+        vector<ll> a(n);
+        fori(i,0,n) cin>>a[i];
+        sort(all(a));
         
     }
     return 0;
