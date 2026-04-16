@@ -11,40 +11,61 @@
 using namespace std;
 
 #define ll long long
-#define pb push_back
-#define all(x) x.begin(), x.end()
-#define fori(i, a, b) for (ll i = a; i < b; i++)
-const ll INF = 1e18;
-const ll MOD = 1e9 + 7;
-
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    ll t = 1;
-   // cin >> t;
+
+    ll t;
+    cin >> t;
     while (t--)
     {
-       ll  n , h;
-        cin >> n >> h;
-        vector<ll> a(n) , ukmkc;
-        for(ll i = 0 ; i < n ; i++) cin >> a[i];
- 
-        ukmkc.push_back(a[0]);
-        ll ukc = n;
-        for(ll i = 1 ; i < n ; i++) {
-            ukmkc.push_back(a[i]);
-            sort(ukmkc.begin(), ukmkc.end(), greater<ll>());
-            long long sum = 0;
-            for(ll i = 0 ; i < ukmkc.size() ; i += 2) sum += ukmkc[i];
-            if(sum > h) {
-                ukc = ukmkc.size() - 1;
-                break;
+        ll p, q;
+        cin >> p >> q;
+
+        ll X = 2*(p + 2*q) + 1;
+
+        bool found = false;
+
+        for (ll a = 1; a * a <= X; a++)
+        {
+            if (X % a == 0)
+            {
+                ll b = X / a;
+
+                // try (a, b)
+                if (a % 2 == 1 && b % 2 == 1)
+                {
+                    ll n = (a - 1) / 2;
+                    ll m = (b - 1) / 2;
+
+                    if (n > 0 && m > 0)
+                    {
+                        cout << n << " " << m << "\n";
+                        found = true;
+                        break;
+                    }
+                }
+
+                // try swapped
+                if (a != b && a % 2 == 1 && b % 2 == 1)
+                {
+                    ll n = (b - 1) / 2;
+                    ll m = (a - 1) / 2;
+
+                    if (n > 0 && m > 0)
+                    {
+                        cout << n << " " << m << "\n";
+                        found = true;
+                        break;
+                    }
+                }
             }
         }
-        cout << ukc << '\n';
+
+        if (!found) cout << -1 << "\n";
     }
+
     return 0;
 }

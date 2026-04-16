@@ -24,27 +24,23 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
     ll t = 1;
-   // cin >> t;
+    cin >> t;
     while (t--)
     {
-       ll  n , h;
-        cin >> n >> h;
-        vector<ll> a(n) , ukmkc;
-        for(ll i = 0 ; i < n ; i++) cin >> a[i];
- 
-        ukmkc.push_back(a[0]);
-        ll ukc = n;
-        for(ll i = 1 ; i < n ; i++) {
-            ukmkc.push_back(a[i]);
-            sort(ukmkc.begin(), ukmkc.end(), greater<ll>());
-            long long sum = 0;
-            for(ll i = 0 ; i < ukmkc.size() ; i += 2) sum += ukmkc[i];
-            if(sum > h) {
-                ukc = ukmkc.size() - 1;
-                break;
-            }
+        ll n,k;
+        cin>>n>>k;
+        vector<ll> b(k);
+        fori(i,0,k) cin>>b[i];
+        vector<pair<ll,ll>> a(n);
+        fori(i,0,n){
+            cin>>a[i].first;
+            a[i].second=i+1;
+
         }
-        cout << ukc << '\n';
+        sort(all(a));
+
+
+        
     }
     return 0;
 }
