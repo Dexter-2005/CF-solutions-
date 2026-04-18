@@ -19,32 +19,33 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-int dfs(int node, int parent, int cnt,
-        vector<ll> &iscat,
-        vector<vector<ll>> &adj,
-        vector<bool> &isleaf,
-        int m) 
-{
-    if (iscat[node]) cnt++;
-    else cnt = 0;
+void dfs(int node, int parent, vector<vector<ll>> &adj, vector<ll> &iscat, vector<bool> &isleaf, int m, vector<int> &ans) {
+    // base / initial setup
+    int maxi = 1;
 
-    if (cnt > m) return 0;
+    // process current node (you can add logic here)
 
-    int ans = 0;
+    // // check if leaf (excluding root case if needed)
+    // if (adj[node].size() == 1 && parent != -1) {
+    //     isleaf[node] = true;
+    // }
 
-    for (auto &i : adj[node]) {
-        if (i != parent) {
-            ans += dfs(i, node, cnt, iscat, adj, isleaf, m);
+    // traverse children
+   
+    for (auto &child : adj[node]) {
+        if (child == parent) continue;
+        
+        // call DFS on child
+        else{
+           if(iscat[child] && iscat[parent]) {
+           
+             }
+         dfs(child, node, adj, iscat, isleaf, m, ans);
         }
     }
 
-    if (isleaf[node]) {
-        return 1;
-    }
-
-    return ans;
+    return result;
 }
-
 
 int main()
 {
@@ -52,36 +53,32 @@ int main()
     cin.tie(0);
 
     ll t = 1;
-    //cin >> t;
+    // cin >> t;
     while (t--)
     {
-        ll n, m;
+        int n,m;
         cin >> n >> m;
-
-        vector<ll> iscat(n + 1, 0);
-        fori(i, 0, n) {
-            cin >> iscat[i + 1];
+        vector<ll> iscat(n+1,0);
+        fori(i,0,n) {
+            cin >> iscat[i+1];
         }
-
-        vector<vector<ll>> adj(n + 1);
-
-        fori(i, 0, n - 1) {
-            ll x, y;
+        vector<vector<ll>> adj(n+1);
+        fori(i,1,n) {
+            int x,y;
             cin >> x >> y;
-            adj[x].pb(y);
-            adj[y].pb(x);
+            adj[x].push_back(y);
+            adj[y].push_back(x);
         }
-
-        vector<bool> isleaf(n + 1, 0);
-        fori(i, 1, n + 1) {
-            if (adj[i].size() == 1 && i != 1) {
+        vector<bool> isleaf(n+1,0);
+        fori(i,1,n+1) {
+            if (adj[i].size() == 1) {
                 isleaf[i] = 1;
             }
         }
-
-        int ans = dfs(1, 0, 0, iscat, adj, isleaf, m);
+        vector<int> ans(n+1,0);
+        dfs(1,0,adj,iscat,isleaf,m,ans);
         cout << ans << "\n";
+       
     }
-
     return 0;
 }

@@ -19,69 +19,54 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-int dfs(int node, int parent, int cnt,
-        vector<ll> &iscat,
-        vector<vector<ll>> &adj,
-        vector<bool> &isleaf,
-        int m) 
-{
-    if (iscat[node]) cnt++;
-    else cnt = 0;
-
-    if (cnt > m) return 0;
-
-    int ans = 0;
-
-    for (auto &i : adj[node]) {
-        if (i != parent) {
-            ans += dfs(i, node, cnt, iscat, adj, isleaf, m);
-        }
-    }
-
-    if (isleaf[node]) {
-        return 1;
-    }
-
-    return ans;
-}
-
-
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     ll t = 1;
-    //cin >> t;
+    // cin >> t;
     while (t--)
     {
-        ll n, m;
-        cin >> n >> m;
+        ll n, k, answer = 0;
+        cin >> n >> k;
 
-        vector<ll> iscat(n + 1, 0);
-        fori(i, 0, n) {
-            cin >> iscat[i + 1];
-        }
+        vector<ll> adj[n + 1], subtree(n + 1), depth(n + 1, -1), arr(n);
 
-        vector<vector<ll>> adj(n + 1);
+        iota(arr.begin(), arr.end(), 1);
 
-        fori(i, 0, n - 1) {
+        fori(i, 1, n)
+        {
             ll x, y;
             cin >> x >> y;
-            adj[x].pb(y);
-            adj[y].pb(x);
+            adj[x].push_back(y);
+            adj[y].push_back(x);
         }
 
-        vector<bool> isleaf(n + 1, 0);
-        fori(i, 1, n + 1) {
-            if (adj[i].size() == 1 && i != 1) {
-                isleaf[i] = 1;
+        function<void(ll, ll)> dfs = [&](ll node, ll parent)
+        {
+            depth[node] = depth[parent] + 1;
+            for (auto &i : adj[node])
+            {
+                if (i != parent)
+                {
+                    dfs(i, node);
+                    subtree[node] += subtree[i] + 1;
+                }
             }
+        };
+
+        dfs(1, 1);
+
+        sort(arr.begin(), arr.end(), [&](ll a, ll b)
+             { return depth[a] - subtree[a] > depth[b] - subtree[b]; });
+
+        fori(i, 0, k)
+        {
+            answer += depth[arr[i]] - subtree[arr[i]];
         }
 
-        int ans = dfs(1, 0, 0, iscat, adj, isleaf, m);
-        cout << ans << "\n";
+        cout << answer << "\n";
     }
-
     return 0;
 }
