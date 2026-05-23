@@ -31,11 +31,16 @@ int main()
         ll n;
         cin >> n;
         vector<ll> a(n);
+        vector<ll> b(n);
         fori(i, 0, n) cin >> a[i];
-        ll mini=*min_element(all(a));
-        ll maxi=*max_element(all(a));
-        cout << (maxi-mini+1)/2 << "\n";
-
+        fori(i, 0, n) cin >> b[i];
+        ll firstmax=0;
+        ll secondmax=0;
+        fori(i,0,n){
+            firstmax+=max(a[i],b[i]);
+            secondmax=max(min(a[i],b[i]),secondmax);
+        }
+        cout << firstmax+secondmax << "\n";
       
     }
 
