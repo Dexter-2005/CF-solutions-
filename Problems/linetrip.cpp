@@ -28,20 +28,24 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
-        cin >> n;
-        vector<long long> a(n);
-        long long sum = 0;
-        for (int i = 0; i < n; ++i)
-        {
-            cin >> a[i];
-            sum += a[i];
+        ll n,x;
+        cin >> n >> x;
+        vector <ll> a(n);
+        fori(i,0,n){
+           cin >> a[i];
         }
-        if (sum % 2 == 0)
-            cout << sum << '\n';
-        else
-            cout << sum - 1 << '\n';
+        //sort(all(a));
+        vector<ll> diff;
+        fori(i,1,n){
+            diff.pb(a[i]-a[i-1]);
+        }
+        diff.pb(2*(x-a[n-1]));
+        diff.pb(a[0]-0);
+        sort(all(diff));
+        cout << diff[diff.size()-1] << "\n";
     }
 
     return 0;
 }
+
+// 1 2 3 4 5 6 /7 8 9 10
