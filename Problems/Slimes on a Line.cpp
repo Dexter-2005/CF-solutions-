@@ -28,7 +28,8 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        // post contest solving 
+        ll n; 
         cin >> n;
         vector<ll> a(n);
         fori(i, 0, n) cin >> a[i];

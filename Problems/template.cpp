@@ -25,18 +25,11 @@ int main()
     cin.tie(0);
 
     ll t = 1;
-    cin >> t;
+   // cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vector<ll> a(n);
-        fori(i, 0, n) cin >> a[i];
-        ll mini=*min_element(all(a));
-        ll maxi=*max_element(all(a));
-        cout << (maxi-mini+1)/2 << "\n";
-
-      
+        fori(i,1,1000) cout << i <<"\n";
+       
     }
 
     return 0;

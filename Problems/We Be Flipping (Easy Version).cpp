@@ -19,6 +19,7 @@ int main()
     cin >> t;
     while (t--)
     {
+        // post contest submission
         ll n;
         cin >> n;
         vector<ll> a(n);
@@ -52,6 +53,9 @@ int main()
         cout << ans.size() << "\n";
         for(auto i:ans) cout << i << " ";
         cout << "\n";
+        
+
+
 
 
     }

@@ -28,6 +28,7 @@ int main()
     cin >> t;
     while (t--)
     {
+        // post contest submission
         ll n;
         cin >> n;
         vector<ll> a(n);

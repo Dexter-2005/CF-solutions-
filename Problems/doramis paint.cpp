@@ -19,33 +19,6 @@ const ll MOD = 1e9 + 7;
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-int countz(int num) {
-    if (num == 0)
-        return 1; 
-
-    int count = 0;
-
-    while (num % 10 == 0) {
-        count++;
-        num /= 10;
-    }
-
-    return count;
-}
-int countd(int num) {
-    if (num == 0)
-        return 1; 
-
-    int count = 0;
-
-    while (num > 0) {
-        count++;
-        num /= 10;
-    }
-
-    return count;
-}
-
 int main()
 {
     ios::sync_with_stdio(0);
@@ -55,36 +28,34 @@ int main()
     cin >> t;
     while (t--)
     {
-       
-        ll n,m;
-        cin >> n >> m;
+        ll n;
+        cin >> n;
         vector<ll> a(n);
         fori(i, 0, n) cin >> a[i];
-        vector<ll> ukmkc(n);
-        vector<ll> ukmkc2(n);
-        fori(i,0,n){
-            ukmkc[i] = countz(a[i]);
-            ukmkc2[i] = countd(a[i]);
+        map<ll, ll> m;
+        fori(i, 0, n) m[a[i]]++;
+        if (m.size() >= 3)
+        {
+            cout << "NO\n";
         }
-        sort(all(ukmkc),greater<ll>());
-        ll ans = 0;
-        ll sum = 0;
-        for(ll i=0;i<n;i+=2){
-            ans += ukmkc[i];
-           
+        else
+        {
+            ll f1 = m.begin()->second;
+            ll f2 = m.rbegin()->second;
+            if (f1 == f2)
+            {
+                cout << "YES\n";
+            }
+            else if (n % 2 == 1 && abs(f1 - f2) == 1)
+            {
+                cout << "YES\n";
+            }
+            else
+            {
+                cout << "NO\n";
+            }
         }
-        fori(i,0,n){
-            sum += ukmkc2[i];
-        }
-        ll ans2=sum-ans;
-        if(ans2<m+1){
-            cout <<"Anna\n";
-
-        }
-        else{
-            cout <<"Sasha\n";
-        }
-    
     }
+
     return 0;
 }
