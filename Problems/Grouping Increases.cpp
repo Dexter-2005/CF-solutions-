@@ -28,7 +28,36 @@ int main()
     cin >> t;
     while (t--)
     {
-       
+        ll n;
+        cin >> n;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        ll ans = 0;
+        ll x = INF, y = INF;
+
+        for (ll i = 0; i < n; i++)
+        {
+            if (x > y)
+            {
+                swap(x, y);
+            }
+
+            if (a[i] <= x)
+            {
+                x = a[i];
+            }
+            else if (a[i] <= y)
+            {
+                y = a[i];
+            }
+            else
+            {
+                x = a[i];
+                ans++;
+            }
+        }
+
+        cout << ans << '\n';
     }
 
         return 0;

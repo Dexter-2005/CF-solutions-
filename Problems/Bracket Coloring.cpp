@@ -28,8 +28,20 @@ int main()
     cin >> t;
     while (t--)
     {
+       ll n;
+       cin >> n;
+       string s;
+       cin >> s;
+       vector<ll> ans(n);
+       ll count1=0;
+       ll count2=0;
        
-    }
+
+        
+        
+        
+        
+        }
 
         return 0;
     }
