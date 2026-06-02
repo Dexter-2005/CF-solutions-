@@ -26,82 +26,30 @@ int main()
 
     ll t = 1;
     cin >> t;
-
     while (t--)
     {
-        ll n;
-        cin >> n;
-
-        string s;
-        cin >> s;
-
-        vector<ll> bal(n);
-
-        fori(i, 0, n)
-        {
-            if (s[i] == '(')
-                bal[i] = 1;
-            else
-                bal[i] = -1;
-        }
-
-        vector<ll> pre(n);
-        pre[0] = bal[0];
-
-        fori(i, 1, n)
-            pre[i] = pre[i - 1] + bal[i];
-
-        if (pre[n - 1] != 0)
-        {
-            cout << -1 << "\n";
-            continue;
-        }
-
-        ll mn = *min_element(all(pre));
-        ll mx = *max_element(all(pre));
-
-        if (mn >= 0 || mx <= 0)
-        {
-            cout << 1 << "\n";
-
-            fori(i, 0, n)
-                cout << 1 << " ";
-
-            cout << "\n";
-            continue;
-        }
-
-        vector<ll> ans(n);
-
-        ll cur = 0;
-
-        fori(i, 0, n)
-        {
-            if (s[i] == '(')
-                cur++;
-            else
-                cur--;
-
-            if (cur > 0)
-                ans[i] = 1;
-            else if (cur < 0)
-                ans[i] = 2;
-            else
+       ll n;
+       cin >> n;
+    //    vector<pair<ll,ll>> a(n-1);
+       ll tuti=n-1;
+       ll itr=0;
+       vector<ll> visited(n+1,0);
+       while(tuti--)
+       {
+              ll u,v;
+              cin >> u >> v;
+            //   a.pb({u,v});
+            if(visited[u+1]==0 && visited[v+1]==0)
             {
-                if (s[i] == ')')
-                    ans[i] = 1;
-                else
-                    ans[i] = 2;
-            }
-        }
-
-        cout << 2 << "\n";
-
-        fori(i, 0, n)
-            cout << ans[i] << " ";
-
-        cout << "\n";
+                visited[u]=1;
+                visited[v]=1;
+                itr++;
+            }     
+       }
+       cout << itr << "\n";
+       
+       
     }
 
-    return 0;
-}
+        return 0;
+    }
