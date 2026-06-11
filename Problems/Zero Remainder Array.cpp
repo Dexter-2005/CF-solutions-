@@ -28,7 +28,32 @@ int main()
     cin >> t;
     while (t--)
     {
-        
+        ll n,k;
+        cin >> n >>k;
+        vector<ll> a(n);
+        fori(i, 0, n)
+        {
+            cin >> a[i];
+        }
+        vector<ll> rem(n,0);
+        fori(i, 0, n)
+        {
+            rem[i] = (k - a[i] % k) % k;
+        }
+        // fori(i,0,n) cout << rem[i] << " ";
+        sort(all(rem));
+        ll ans = 0;
+        ll ct=0;
+        fori(i, 0, n){
+            if(rem[i] == 0) continue;
+            if(i>0 && rem[i] == rem[i-1]) ct++;
+            else ct=0;
+            ans = max(ans, rem[i]+ct*k);
+        }
+        if(ans) ans++;
+        cout << ans << "\n";
+
     }
-    return 0;
-}
+
+        return 0;
+    }

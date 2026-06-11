@@ -28,7 +28,24 @@ int main()
     cin >> t;
     while (t--)
     {
-        
+       string s;
+       ll n,k;
+       cin >> n >> k;
+       cin >> s;
+       string ans(n,'0');
+       ll open=0,close=0;
+       fori(i,0,n){
+              if(s[i]=='(') open++;
+              else{
+                if(open>0){    // && k>0
+                    // ans[i]='1';
+                    //k--;
+                    open--;
+                }
+                else close++;
+                }
+              }
+       cout << ans << "\n";
     }
     return 0;
 }

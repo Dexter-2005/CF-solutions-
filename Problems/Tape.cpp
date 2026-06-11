@@ -25,10 +25,29 @@ int main()
     cin.tie(0);
 
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
     {
+        ll n,m,k;
+        cin >> n >> m >> k;
+        vector<ll> a(n);
+        fori(i,0,n) cin >> a[i];
+        vector<ll> diff(n-1);
+        fori(i,0,n-1) diff[i] = a[i+1] - a[i]-1;
+        sort(all(diff));
+        ll ans=0;
+        fori(i,0,n-k){
+            ans+=diff[i];
+        }
+        ans+=n;
+        cout << ans << "\n"; 
+
+
         
+
+    
+       
     }
-    return 0;
-}
+
+        return 0;
+    }

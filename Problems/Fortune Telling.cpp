@@ -28,7 +28,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        
+         ll n, x, y;
+        cin >> n >> x >> y;
+        vector<ll> a(n);
+        ll sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            sum += a[i];
+        }
+        sum += x;
+        if (sum % 2 == y % 2)
+        {
+ 
+            cout << "Alice" << endl;
+        }
+        else
+        {
+            cout << "Bob" << endl;
+        }
     }
-    return 0;
-}
+        return 0;
+    }
