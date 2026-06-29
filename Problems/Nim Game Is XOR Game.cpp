@@ -15,11 +15,12 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define fori(i, a, b) for (ll i = a; i < b; i++)
 const ll inf = 1e18;
-const ll mod = 1e9 + 7;
+const ll mod = 998244353;
 
 void debug(vector<ll> &v)
 {
-    for (auto x : v) cout << x << " ";
+    for (auto x : v)
+        cout << x << " ";
     cout << endl;
 }
 
@@ -33,7 +34,25 @@ int main()
     cin >> t;
     while (t--)
     {
-      
+        ll n;
+        cin >> n;
+        vector<ll> a(n);
+        fori(i, 0, n) cin >> a[i];
+        if (n==1)
+        {
+            cout << 0 << "\n";
+            continue;
+        }
+        ll xr=0;
+        fori(i, 0, n) xr^=a[i];
+        ll ans=0;
+        if (xr==0) ans++;
+        fori(i, 0, n)
+        {
+            ll b=xr^a[i];
+            if(a[i]>b)ans++;
+        }
+        cout << ans%mod << "\n";
     }
 
     return 0;

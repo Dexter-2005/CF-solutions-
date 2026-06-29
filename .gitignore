@@ -1,3 +1,10 @@
 *.exe
-/.cph/
+.cph/
 .vscode/
+1899/
+Templates/
+blackbox/
+Yarik and Array.cpp
+map.cpp
+set.cpp
+vector.cpp
