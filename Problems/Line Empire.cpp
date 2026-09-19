@@ -37,10 +37,31 @@
     cin>>t;
 
     while (t--)
-    {    
-        
-    
+    { 
+        ll n,a,b;
+        cin>>n>>a>>b;
 
+        vector<ll> x(n+1);
+        fori(i,1,n+1) cin>>x[i];
+        vector<ll> suf(n+2,0);
+        for(ll i=n;i>=1;i--)
+        {
+            suf[i]=suf[i+1]+x[i];
+        }
+        ll ans=inf;
+        for(ll i=0;i<=n;i++)
+        {
+            ll cur;
+            if(i==0){
+                cur=b*suf[1];
+            }
+            else{
+                cur=x[i]*(a+b)+(suf[i+1]-(n-i)*x[i])*b;
+            }
+            ans=min(ans,cur);
+        }
+        cout<<ans<<endl;
     }
+
     return 0;
-    }
+}

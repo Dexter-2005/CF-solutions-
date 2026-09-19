@@ -38,7 +38,34 @@
 
     while (t--)
     {    
-        
+        ll n;
+        cin>>n;
+        vector<ll> a(n),b(n),pre(n),diff(n+1,0),drunk(n,0);
+        fori(i,0,n) cin>>a[i];
+        fori(i,0,n) cin>>b[i];
+        pre[0]=b[0];
+        fori(i,1,n) pre[i]=pre[i-1]+b[i];
+        fori(i,0,n)
+        {
+            ll base=(i==0?0:pre[i-1]);
+            ll target=base+a[i];
+            ll k=lower_bound(pre.begin()+i,pre.end(),target)-pre.begin();
+            diff[i]+=1;
+            diff[k]-=1;
+            if(k<n)
+            {
+                ll before=(k==i?base:pre[k-1]);
+                drunk[k]+=target-before;
+            }
+        }
+        ll cov=0;
+        fori(i,0,n)
+        {
+            cov+=diff[i];
+            drunk[i]+=cov*b[i];
+        }
+        fori(i,0,n) cout<<drunk[i]<<" ";
+        cout<<endl;
     
 
     }
